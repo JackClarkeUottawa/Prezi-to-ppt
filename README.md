@@ -1,7 +1,7 @@
 # Prezi-to-ppt
 This is the last prototype from my prezi to ppt project.
 
-This project is no longer operational because it was dependant on the ABBYYY AI. 
+This project is no longer operational because it was dependant on the ABBYYY API. 
 
 The individual functions can be found in Function.py and process.py.
 
