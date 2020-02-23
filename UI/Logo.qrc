@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="Image"/>
+  <qresource prefix="image">
+    <file>prezto.png</file>
+  </qresource>
+</RCC>
