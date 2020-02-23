@@ -106,6 +106,3 @@ def main():
 	else:
 		print("No such file: {}".format(source_file))
 
-
-if __name__ == "__main__":
-	main()

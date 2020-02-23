@@ -11,3 +11,4 @@ def DELETE_ALLadsaf():
             continue
         else:
             continue
+DELETE_ALLadsaf()
