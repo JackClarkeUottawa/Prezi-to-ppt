@@ -58,11 +58,12 @@ def getprezi(url):
 
     """
     options = Options()
-    #options.add_argument("--headless")
+    options.add_argument("--headless")
     options.add_argument("--window-size=1920,1080")
     options.add_argument("--start-maximized")
     options.add_argument('--disable-dev-shm-usage')
-    options.binary_location = r"E:\ProgramFiles\Google\Chrome\Application\chrome.exe"
+    #options.binary_location = r"E:\ProgramFiles\Google\Chrome\Application\chrome.exe" <- computers with chrome on a different hard rive from the windows installation need to set this manually
+    
     cwd = os.getcwd()
     __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
     driver_loca = os.path.join(__location__, 'chromedriver.exe')
