@@ -15,7 +15,7 @@ from PyPDF2 import PdfFileMerger
 import shutil
 # driver = webdriver.Chrome()
 # driver.get('https://prezi.com/asqylv4mdpjp/civil-engineering-presentation/')
-
+from AbbyyOnlineSdk import *
 from process import *
 
 def screenshotelement(id, savename, driver):
@@ -38,32 +38,17 @@ def screenshotelement(id, savename, driver):
 
 
 def click_elementxpath(name, driver):
-    """
-    click_elementxpath(string,string)
-    (str,str) -> None
-
-    clicks on the element with the xpath "name".
-    driver is path to chrome driver
-
-    """
     element = driver.find_element_by_xpath(name)
     element.click()
 
 def getprezi(url):
-    """
-    getprezi(str)
-    str -> None
 
-    Saves images of a prezi slide at url to the working folder
-
-    """
     options = Options()
-    options.add_argument("--headless")
+    #options.add_argument("--headless")
     options.add_argument("--window-size=1920,1080")
     options.add_argument("--start-maximized")
     options.add_argument('--disable-dev-shm-usage')
-    #options.binary_location = r"E:\ProgramFiles\Google\Chrome\Application\chrome.exe" <- computers with chrome on a different hard rive from the windows installation need to set this manually
-    
+    #options.binary_location = r"E:\ProgramFiles\Google\Chrome\Application\chrome.exe"
     cwd = os.getcwd()
     __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
     driver_loca = os.path.join(__location__, 'chromedriver.exe')
@@ -101,11 +86,6 @@ def getprezi(url):
 
 
 def ABBYYY(input, outputname):
-    """
-    (str,str) -> None
-
-    Uses ABBYYY to convert an image with path "input" to a pdf file with path "outputname"
-    """
     processor = AbbyyOnlineSdk()
 
     setup_processor()
@@ -122,11 +102,6 @@ def ABBYYY(input, outputname):
 
 
 def appendPDF(dest,pdfs):
-    """
-    (str,list of str) -> None
-
-    combines each pdf in pdfs in order in a final pdf with name dest
-    """
     merger = PdfFileMerger()
     for pdf in pdfs:
         merger.append(pdf)
@@ -135,12 +110,6 @@ def appendPDF(dest,pdfs):
 
 
 def sort_bynumber(lst):
-    """
-    (list of str) -> (list of str)
-
-    takes a list of files of the format (...#AAAA or ...##AAAA) and sorts them where AAAA can be anything and # are integers
-
-    """
     numbers = []
     for x in lst:
         if x[-6].isdigit():
@@ -155,14 +124,6 @@ def sort_bynumber(lst):
     return [i[1] for i in numbers]
 
 def DELETE_PNGSANDpdfs():
-    """
-    None -> None
-
-    Deletes all files that end with  .png or .pdf in working dir that has an integer as it's -5 char
-
-    Deletes all ...#AAAA
-
-    """
     directory = os.fsencode(os.getcwd())
     for file in os.listdir(directory):
         filename = os.fsdecode(file)
@@ -175,12 +136,6 @@ def DELETE_PNGSANDpdfs():
         else:
             continue
 def DeleteALL():
-    """
-    None -> None
-
-    Deletes all files that end with .png or .pdf
-
-    """
     directory = os.fsencode(os.getcwd())
     for file in os.listdir(directory):
         filename = os.fsdecode(file)
@@ -194,12 +149,6 @@ def DeleteALL():
             continue
 
 def main(url):
-    """
-    (str) -> None
-
-    Saves a readable pdf to the current working dir of the prezi file
-
-    """
     DeleteALL()
     getprezi(url)
     abbyr = ''
@@ -226,7 +175,6 @@ def main(url):
         ABBYYY(png, currentpdf)
         listofpdfs.append(currentpdf)
     appendPDF('final.pdf',listofpdfs)
-    print(os.getcwd())
     DELETE_PNGSANDpdfs()
 
 
